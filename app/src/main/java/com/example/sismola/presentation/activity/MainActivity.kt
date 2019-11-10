@@ -18,6 +18,9 @@ import com.example.sismola.presentation.fragment.*
 import com.example.sismola.presentation.viewmodel.DataViewModel
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.fragment_control_panel.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
@@ -25,12 +28,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     @Inject
     lateinit var dataViewModel: DataViewModel
 
+    private val updateDataEvery = 60 //second
+    private var itemPosition = -1
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fragment_control_panel)
 
         initInject()
         observeAndLoadData()
+        autoRefreshData()
 
         ////////
         setContentView(R.layout.activity_main)
@@ -51,6 +58,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         navigationView.setNavigationItemSelectedListener(this)
     }
 
+    private fun autoRefreshData() {
+        GlobalScope.launch {
+            delay((updateDataEvery*1000).toLong())
+            dataViewModel.getDevices()
+            autoRefreshData()
+        }
+    }
+
     private fun observeAndLoadData() {
         dataViewModel.getDevices()
         dataViewModel.devices.observe(this, Observer {
@@ -59,9 +74,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun updateUI(devices: List<Device>) {
+        if(itemPosition==-1) itemPosition=0
         populateListDeviceSpinner(devices)
-        populateLastUpdate(devices, 0)
-        populateAllData(devices, 0)
+        populateLastUpdate(devices, itemPosition)
+        populateAllData(devices, itemPosition)
     }
 
     private fun populateAllData(devices: List<Device>, position: Int) {
@@ -90,13 +106,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner_devices.apply{
             adapter = spinnerAdapter
+            setSelection(itemPosition)
             onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
                 override fun onNothingSelected(p0: AdapterView<*>?) {
                 }
 
                 override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
-                    populateLastUpdate(devices, position)
-                    populateAllData(devices, position)
+                    itemPosition = position
+                    populateLastUpdate(devices, itemPosition)
+                    populateAllData(devices, itemPosition)
                 }
             }
         }

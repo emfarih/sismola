@@ -28,4 +28,5 @@
     <string name="suhu_tanah">SUHU TANAH</string>
     <string name="kelembapan_udara">KELEMBAPAN UDARA</string>
     <string name="suhu_udara">SUHU UDARA</string>
+    <string name="refresh">Refresh</string>
 </resources>
