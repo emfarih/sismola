@@ -31,7 +31,7 @@
                 android:text="@string/device" />
 
             <Spinner
-                android:id="@+id/spinner_devices"
+                android:id="@+id/fcp_spinner_devices"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_width="wrap_content"
@@ -39,11 +39,11 @@
 
             <TextView
                 android:textSize="16sp"
-                app:layout_constraintTop_toBottomOf="@id/spinner_devices"
+                app:layout_constraintTop_toBottomOf="@id/fcp_spinner_devices"
                 app:layout_constraintLeft_toLeftOf="parent"
                 android:layout_marginTop="8dp"
                 tools:text = "Last Update"
-                android:id="@+id/tv_last_update"
+                android:id="@+id/fcp_tv_last_update"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -78,7 +78,7 @@
                         tools:text="0"
                         android:textStyle="bold"
                         android:textSize="44sp"
-                        android:id="@+id/itc"
+                        android:id="@+id/fcp_itc"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
                         android:layout_margin="10dp"/>
@@ -117,7 +117,7 @@
                         tools:text="0"
                         android:textStyle="bold"
                         android:textSize="44sp"
-                        android:id="@+id/ch"
+                        android:id="@+id/fcp_ch"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
                         android:layout_margin="10dp" />
@@ -164,7 +164,7 @@
                         tools:text="0"
                         android:textStyle="bold"
                         android:textSize="44sp"
-                        android:id="@+id/ph"
+                        android:id="@+id/fcp_ph"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
                         android:layout_margin="10dp" />
@@ -211,7 +211,7 @@
                         tools:text="0"
                         android:textStyle="bold"
                         android:textSize="44sp"
-                        android:id="@+id/kt"
+                        android:id="@+id/fcp_kt"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
                         android:layout_margin="10dp" />
@@ -249,7 +249,7 @@
                         tools:text="0"
                         android:textStyle="bold"
                         android:textSize="44sp"
-                        android:id="@+id/st"
+                        android:id="@+id/fcp_st"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
                         android:layout_margin="10dp" />
@@ -297,7 +297,7 @@
                         tools:text="0"
                         android:textStyle="bold"
                         android:textSize="44sp"
-                        android:id="@+id/ku"
+                        android:id="@+id/fcp_ku"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
                         android:layout_margin="10dp" />
@@ -335,7 +335,7 @@
                         tools:text="0"
                         android:textStyle="bold"
                         android:textSize="44sp"
-                        android:id="@+id/su"
+                        android:id="@+id/fcp_su"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
                         android:layout_margin="10dp" />

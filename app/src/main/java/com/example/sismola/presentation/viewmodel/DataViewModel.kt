@@ -12,12 +12,12 @@ import javax.inject.Inject
  * @author by M on 10/11/19
  */
 class DataViewModel @Inject constructor(private val dataRepository: DataRepository): ViewModel() {
-    val devices = MutableLiveData<List<Device>>()
+    val devicesLiveData = MutableLiveData<List<Device>>()
 
     fun getDevices(){
         GlobalScope.launch {
             val retrievedResponse = dataRepository.getData()
-            devices.postValue(retrievedResponse.response.devices)
+            devicesLiveData.postValue(retrievedResponse.response.devices)
         }
     }
 }
